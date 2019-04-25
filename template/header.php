@@ -1,6 +1,5 @@
 <?php
-
-  require_once "../config/koneksi.php";
+  include ('../config/koneksi.php');
   session_start();
 
   if($_SESSION['status'] != 'login'){
