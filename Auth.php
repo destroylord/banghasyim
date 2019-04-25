@@ -1,6 +1,9 @@
 <?php
   session_start();
   include 'config/koneksi.php';
+  if(isset($_SESSION['status'])){
+    header('location:login_sql/coba.php');
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,7 +42,17 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Silahkan Login dengan akun anda</p>
-
+    <?php
+      if (isset($_GET['pesan'])) {
+        if ($_GET['pesan'] == 'gagal') {
+          echo" <p>gagal Masuk </p>";
+        }else if($_GET['pesan'] == 'logout'){
+          echo "<p>Anda logout</p>";
+        }else if($_GET['pesan'] == 'belum_login'){
+          echo "<p>Anda Belum Login</p>";
+        }
+      }
+    ?>
     <form action="login_sql/proses_login.php" method="POST">
       <div class="form-group has-feedback">
         <input type="email" class="form-control" placeholder="E-mail..." name="email">
@@ -60,7 +73,6 @@
       </div>
     </form>
     <br>
-    Tidak memiliki akun?<a href="Register.php" class="text-center">Daftar disini</a>
   </div>
   <!-- /.login-box-body -->
 </div>
